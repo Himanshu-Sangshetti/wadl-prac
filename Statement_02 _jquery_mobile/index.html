@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Demo of jQuery Mobile - by someone</title>
+</head>
+
+<body>
+    <div data-role="page" data-theme="" style="background-color:aliceblue;">
+        <div data-role="header" style="background-color: #2196F3; color: #fff; text-align: center;">
+            <h1 style="font-size: 24px;">Features For You</h1>
+        </div>
+        <div data-role="navbar" style="background-color: #f5f5f5;">
+            <ul>
+                <li><a href="index.html" style="color: #666;">Home</a></li>
+                <li><a href="about_us.html" style="color: #666;">About</a></li>
+                <li><a href="login_register.html" style="color: #666;">Register for Newsletter</a></li>
+            </ul>
+        </div>
+
+        <center>
+            <h3>Gallery</h3>
+        </center>
+        <div class="content">
+            <center>
+                <div class="rows">
+                    <img src="./images/img1.jpg" alt="Img1" width="240" height="200">
+                    <img src="./images/img2.jpg" alt="Img2" width="240" height="200">
+                    <img src="./images/img3.jpg" alt="Img3" width="240" height="200">
+                    <img src="./images/img4.jpg" alt="Img4" width="240" height="200">
+                    <img src="./images/img5.jpg" alt="Img5" width="240" height="200">
+                    <img src="./images/img6.jpg" alt="Img6" width="240" height="200">
+                </div>
+                <br>
+                <div class="rows">
+                    <img src="./images/img1.jpg" alt="Img1" width="240" height="200">
+
+                    <img src="./images/img5.jpg" alt="Img6" width="240" height="200">
+                    <img src="./images/img6.jpg" alt="Img6" width="240" height="200">
+                </div>
+                <br>
+            </center>
+        </div>
+
+        <label for="search-basic">Search Input:</label>
+<input type="search" name="search" id="searc-basic" value="" />
+
+<label for="slider-1">Input slider:</label>
+<input type="range" name="slider-1" id="slider-1" value="60" min="0" max="100" />
+
+<fieldset data-role="controlgroup">
+	<legend>Choose a pet:</legend>
+     	<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+     	<label for="radio-choice-1">Cat</label>
+
+     	<input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+     	<label for="radio-choice-2">Dog</label>
+
+     	<input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3"  />
+     	<label for="radio-choice-3">Hamster</label>
+
+     	<input type="radio" name="radio-choice" id="radio-choice-4" value="choice-4"  />
+     	<label for="radio-choice-4">Lizard</label>
+</fieldset>
+
+
+        <div class="ui-grid-a">
+            <div class="ui-block-a"><button type="submit" data-theme="c">Cancel</button></div>
+            <div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>
+        </div>
+
+
+        <div data-role="collapsible" data-theme="a" data-content-theme="a">
+            <h3>Header swatch A</h3>
+            <p>I'm the collapsible content with a themed content block set to "a".</p>
+        </div>
+
+        <div data-role="collapsible-set">
+
+            <div data-role="collapsible" data-collapsed="false">
+            <h3>Section 1</h3>
+            <p>I'm the collapsible set content for section 1.</p>
+            </div>
+            
+            <div data-role="collapsible">
+            <h3>Section 2</h3>
+            <p>I'm the collapsible set content for section 2.</p>
+            </div>
+            
+        </div>
+
+        <div data-role="footer">
+            <center>
+                <h3>PICT 2024 - Himanshu</h3>
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>

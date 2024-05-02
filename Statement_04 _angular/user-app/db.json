@@ -1,0 +1,25 @@
+{
+  "Signup_Users": [
+    {
+      "fname": "Savani Kalekar",
+      "number": 7058444221,
+      "email": "savanikalekar@gmail.com",
+      "password": "savani",
+      "id": 1
+    },
+    {
+      "fname": "sumit",
+      "number": 9021368015,
+      "email": "sumit@gmail.com",
+      "password": "password",
+      "id": 2
+    },
+    {
+      "fname": "saif",
+      "number": 2938409809485,
+      "email": "saif@gmail.com",
+      "password": "password",
+      "id": 3
+    }
+  ]
+}

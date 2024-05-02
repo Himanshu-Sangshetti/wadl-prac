@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+</head>
+<body>
+    <h1>Student Management System</h1>
+
+    <!-- Add Student Form -->
+    <h2>Add Student</h2>
+    <form id="studentForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="rollNo">Roll No:</label><br>
+        <input type="text" id="rollNo" name="rollNo"><br>
+        <label for="wadMarks">WAD Marks:</label><br>
+        <input type="number" id="wadMarks" name="wadMarks"><br>
+        <label for="ccMarks">CC Marks:</label><br>
+        <input type="number" id="ccMarks" name="ccMarks"><br>
+        <label for="dsbdaMarks">DSBDA Marks:</label><br>
+        <input type="number" id="dsbdaMarks" name="dsbdaMarks"><br>
+        <label for="cnsMarks">CNS Marks:</label><br>
+        <input type="number" id="cnsMarks" name="cnsMarks"><br>
+        <label for="aiMarks">AI Marks:</label><br>
+        <input type="number" id="aiMarks" name="aiMarks"><br>
+        <button type="button" onclick="addStudent()">Add Student</button>
+    </form>
+
+    <!-- Total count of documents and List all documents -->
+    <h2>Total Count of Students</h2>
+    <p id="totalCount"></p>
+    <h2>List of Students</h2>
+    <ul id="allStudentsList"></ul>
+
+    <!-- List the names of students who got more than 20 marks in DSBDA Subject -->
+    <h2>Students with More Than 20 Marks in DSBDA</h2>
+    <ul id="moreThan20InDSBDAList"></ul>
+
+    <!-- List the names who got more than 25 marks in all subjects -->
+    <h2>Students with More Than 25 Marks in All Subjects</h2>
+    <ul id="moreThan25InAllList"></ul>
+
+    <!-- List the names who got less than 40 in both CC and WAD -->
+    <h2>Students with Less Than 40 Marks in CC and WAD</h2>
+    <ul id="lessThan40In2SubjectsList"></ul>
+
+    <!-- Display the Students data in Browser in tabular format -->
+    <h2>Student Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>WAD Marks</th>
+                <th>CC Marks</th>
+                <th>DSBDA Marks</th>
+                <th>CNS Marks</th>
+                <th>AI Marks</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+    </table>
+
+    <script>
+        // Function to add a student
+        function addStudent() {
+            const formData = {
+                Name: document.getElementById('name').value,
+                Roll_No: document.getElementById('rollNo').value,
+                WAD_Marks: parseInt(document.getElementById('wadMarks').value),
+                CC_Marks: parseInt(document.getElementById('ccMarks').value),
+                DSBDA_Marks: parseInt(document.getElementById('dsbdaMarks').value),
+                CNS_Marks: parseInt(document.getElementById('cnsMarks').value),
+                AI_Marks: parseInt(document.getElementById('aiMarks').value)
+            };
+
+            fetch('http://localhost:3000/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                console.log(data.student);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Fetch and display total count of students and list all students
+        fetch('http://localhost:3000/displayCountAndDocuments')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('totalCount').innerText = `Total count: ${data['total count']}`;
+                const students = data.students;
+                students.forEach(student => {
+                    const li = document.createElement('li');
+                    li.innerText = `${student.Name} - Roll No: ${student.Roll_No}`;
+                    document.getElementById('allStudentsList').appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch and display students with more than 20 marks in DSBDA
+        fetch('http://localhost:3000/getMoreThan20InDSBDA')
+            .then(response => response.json())
+            .then(data => {
+                const students = data;
+                students.forEach(student => {
+                    const li = document.createElement('li');
+                    li.innerText = student.Name;
+                    document.getElementById('moreThan20InDSBDAList').appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch and display students with more than 25 marks in all subjects
+        fetch('http://localhost:3000/getMoreThan25InAll')
+            .then(response => response.json())
+            .then(data => {
+                const students = data;
+                students.forEach(student => {
+                    const li = document.createElement('li');
+                    li.innerText = student.Name;
+                    document.getElementById('moreThan25InAllList').appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch and display students with less than 40 marks in CC and WAD
+        fetch('http://localhost:3000/getMoreThan40In2Subjects')
+            .then(response => response.json())
+            .then(data => {
+                const students = data;
+                students.forEach(student => {
+                    const li = document.createElement('li');
+                    li.innerText = student.Name;
+                    document.getElementById('lessThan40In2SubjectsList').appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch and display all students in tabular format
+        fetch('http://localhost:3000/displayAllStudentsInTable')
+    .then(response => response.json())
+    .then(data => {
+        const students = data; // Assuming data is an array of student objects
+        const tableBody = document.getElementById('studentTableBody');
+
+        students.forEach(student => {
+            const row = document.createElement('tr');
+
+            // Create table cells for each student property
+            const nameCell = document.createElement('td');
+            nameCell.textContent = student.Name;
+            row.appendChild(nameCell);
+
+            const rollNoCell = document.createElement('td');
+            rollNoCell.textContent = student.Roll_No;
+            row.appendChild(rollNoCell);
+
+            const wadMarksCell = document.createElement('td');
+            wadMarksCell.textContent = student.WAD_Marks;
+            row.appendChild(wadMarksCell);
+
+            const ccMarksCell = document.createElement('td');
+            ccMarksCell.textContent = student.CC_Marks;
+            row.appendChild(ccMarksCell);
+
+            const dsbdaMarksCell = document.createElement('td');
+            dsbdaMarksCell.textContent = student.DSBDA_Marks;
+            row.appendChild(dsbdaMarksCell);
+
+            const cnsMarksCell = document.createElement('td');
+            cnsMarksCell.textContent = student.CNS_Marks;
+            row.appendChild(cnsMarksCell);
+
+            const aiMarksCell = document.createElement('td');
+            aiMarksCell.textContent = student.AI_Marks;
+            row.appendChild(aiMarksCell);
+
+            // Append the row to the table body
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
